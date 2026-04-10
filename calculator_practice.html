@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>계산기</title>
+
+    <style>
+        .calculator {
+            background: #16213e;
+            padding: 24px;
+            width: 320px;
+        }
+
+        /* 디스플레이 */
+        .display {
+            background: #0f3460;
+            padding: 20px 16px;
+            margin-bottom: 20px;
+            min-height: 90px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: flex-end;
+        }
+
+        .display .expression {
+            font-size: 0.85rem;
+            color: skyblue;
+            min-height: 20px;
+        }
+
+        .display .current {
+            font-size: 2.4rem;
+            font-weight: 300;
+            color: white;
+            letter-spacing: 1px;
+        }
+
+        /* 버튼 그리드 */
+        .buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+
+        button {
+            padding: 20px 0;
+            cursor: pointer;
+        }
+
+
+        /* 0버튼을 2칸 차지 */
+        .span-two {
+            grid-column: span 2;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="calculator">
+
+        <div class="display">
+            <div class="expression" id="expression"></div>
+            <div class="current" id="current">0</div>
+        </div>
+
+        <div class="buttons">
+            <!-- 1행 -->
+            <button class="btn-util" onclick="clearAll()">AC</button>
+            <button class="btn-util" onclick="toggleSign()">+/-</button>
+            <button class="btn-util" onclick="percent()">%</button>
+            <button class="btn-operator" onclick="setOperator('/')">/</button>
+
+            <!-- 2행 -->
+            <!-- <button class="btn-number" onclick=""></button> -->
+            <button class="btn-number" onclick="inputNum('7')">7</button>
+            <button class="btn-number" onclick="inputNum('8')">8</button>
+            <button class="btn-number" onclick="inputNum('9')">9</button>
+            <button class="btn-operator" onclick="setOperator('*')">x</button>
+
+            <!-- 3행 -->
+            <button class="btn-number" onclick="inputNum('4')">4</button>
+            <button class="btn-number" onclick="inputNum('5')">5</button>
+            <button class="btn-number" onclick="inputNum('6')">6</button>
+            <button class="btn-operator" onclick="setOperator('-')">-</button>
+
+            <!-- 4행 -->
+            <button class="btn-number" onclick="inputNum('1')">1</button>
+            <button class="btn-number" onclick="inputNum('2')">2</button>
+            <button class="btn-number" onclick="inputNum('3')">3</button>
+            <button class="btn-operator" onclick="setOperator('+')">+</button>
+
+            <!-- 5행 -->
+            <button class="btn-number span-two" onclick="inputNum('0')">0</button>
+            <button class="btn-number" onclick="inputDot()">.</button>
+            <button class="btn-equals" onclick="calculate()">=</button>
+
+        </div>
+    </div>
+
+    <script>
+        // 상태 변수
+        let currentInput = '0'; // 현재 화면에 보이는 숫자
+        let previousInput = ''; // 연산자 앞의 숫자
+        let operator = null; // 선택된 연산자 (+,-,*,/)
+        let shouldReset = false; // 다음 숫자 입력 시 초기화 여부
+
+        // DOM 요소
+        const currentEl = document.getElementById("current");
+        const expressionEl = document.getElementById("expression");
+
+        // 화면 업데이트
+        function updateDisplay() {
+            currentEl.textContent = currentInput;
+        }
+
+    </script>
+
+
+
+</body>
+
+</html>
